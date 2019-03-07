@@ -34,7 +34,16 @@ public class LiteCSVTestMain : MonoBehaviour {
 	    //}
 	    //CSVMapper.Map<AddressBookData>(new AddressBookDataParser(), content,1);
 
+        this.DumpDataClass(file);
+    }
 
+    private void DumpDataClass(CSVFile file)
+    {
+        CSVCSFileData classFileData = CSVCSFileCreator.CreateDataClassFile("AdBbookData", file.GetHeaderAt(0));
+        Debug.Log(classFileData.SourceCode);
+
+        CSVCSFileData parserClassFileData = CSVCSFileCreator.CreateParserClassFile("AdBbookData", file);
+        Debug.Log(parserClassFileData.SourceCode);
     }
 
     // Update is called once per frame

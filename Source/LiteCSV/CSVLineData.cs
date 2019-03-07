@@ -14,6 +14,11 @@ namespace LiteCSV
             this._datas = datas;
         }
 
+        public CSVLineData()
+        {
+            this._datas = new List<string>();
+        }
+
         public int Count
         {
             get { return this._datas.Count; }
@@ -22,6 +27,16 @@ namespace LiteCSV
         public List<string> Datas
         {
             get { return this._datas; }
+        }
+
+        public void Clear()
+        {
+            this._datas.Clear();
+        }
+
+        public void AddData(string value)
+        {
+            this._datas.Add(value);
         }
 
         public void SetData(int column, string value)

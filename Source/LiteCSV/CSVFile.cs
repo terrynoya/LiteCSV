@@ -35,6 +35,11 @@ namespace LiteCSV
             this.ParseDatas(dataOffset, lines);
         }
 
+        public int ColumnCount
+        {
+            get { return this._columnCount; }
+        }
+
         private void ParseDatas(int dataOffset, string[] lines)
         {
             for (int i = dataOffset; i < lines.Length - dataOffset; i++)
@@ -93,12 +98,30 @@ namespace LiteCSV
             return this._lineDatas[index];
         }
 
+        /// <summary>
+        /// clear all datas,not headers
+        /// </summary>
+        public void ClearAllData()
+        {
+            this._lineDatas.Clear();
+        }
+
+        public void AddData(CSVLineData data)
+        {
+            this._lineDatas.Add(data);
+        }
+
+        public void RemoveDataAt(int index)
+        {
+            this._lineDatas.RemoveAt(index);
+        }
+
         public List<CSVLineData> Datas
         {
             get { return this._lineDatas; }
         }
 
-        public CSVLineData GetLineData(string line)
+        protected CSVLineData GetLineData(string line)
         {
             List<string> dataList = new List<string>();
             string[] datas = line.Split(new string[] {this._columnToken}, StringSplitOptions.None);

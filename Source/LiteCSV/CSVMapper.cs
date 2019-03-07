@@ -56,6 +56,31 @@ namespace LiteCSV
             }
             return rlt;
         }
+        
+        public static void ToCSV<T>(CSVDataWriter writer, CSVFile file, List<T> dataList)
+        {
+            file.ClearAllData();
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                T t = dataList[i];
+                CSVLineData line = new CSVLineData();
+                writer.SetData(t, line);
+                file.AddData(line);
+            }
+        }
+
+        public static CSVFile ToCSV<T>(CSVDataWriter writer, List<T> dataList, string lineToken = CSVToken.CSV_LINE_TOKEN, string columnToken = CSVToken.CSV_COLUMN_TOKEN)
+        {
+            CSVFile file = new CSVFile(0,lineToken,columnToken);
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                T t = dataList[i];
+                CSVLineData line = new CSVLineData();
+                writer.SetData(t, line);
+                file.AddData(line);
+            }
+            return file;
+        }
 
         public static List<string> GetLineDatas(string line, string columnToken)
         {

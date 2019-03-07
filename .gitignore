@@ -1,0 +1,7 @@
+Build/vs2015/LiteCSV/bin/
+Build/vs2015/LiteCSV/obj/
+Examples/Unity/LiteCSVExample/Library
+Examples/Unity/LiteCSVExample/ProjectSettings
+Examples/Unity/LiteCSVExample/ProjectSettings/Temp
+Examples/Unity/LiteCSVExample/ProjectSettings/LiteCSVExample.csproj
+Examples/Unity/LiteCSVExample/ProjectSettings/LiteCSVExample.sln

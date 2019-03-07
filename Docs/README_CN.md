@@ -3,6 +3,7 @@
 =====
 # 如何使用
 
+# 读取
 假设addressbook.csv中需要处理以下内容
 
 Id,Name,Desc,Data0,Data1,Data2
@@ -97,3 +98,62 @@ CSVMapper.Map<AddressBookData>(new AddressBookDataParser(), content,1);
 
 如果不希望2次遍历，请使用方法二
 
+# 反序列化，修改CSVFile内容和保存
+
+## 新建和实现CSVDataWriter的子类，用于将AdressBookData写回CSVLineData
+
+```csharp
+
+public class AdressBookDataWriter:CSVDataWriter
+{
+    public override void SetData(object data, CSVLineData lineData)
+    {
+        AddressBookData abData = data as AddressBookData;
+        if (abData == null)
+        {
+            return;
+        }
+        lineData.Clear();
+        lineData.AddData(abData.Id);
+        lineData.AddData(abData.Name);
+        lineData.AddData(abData.Desc);
+        lineData.AddData(abData.Data0);
+        lineData.AddData(abData.Data1);
+        lineData.AddData(abData.Data2);
+    }
+}
+
+```
+
+## 保存单个AdressBookData
+
+修改第一行数据中的Name
+
+```csharp
+
+List<AddressBookData> list = CSVMapper.Map<AddressBookData>(new AddressBookDataParser(), file);
+AddressBookData data = list[0];
+data.Name = "modify";
+AdressBookDataWriter writer = new AdressBookDataWriter();
+CSVLineData lineToModify = file.GetLineDataAt(0);
+writer.SetData(data, lineToModify);
+
+
+string finalCSVText = file.ToCSV();
+
+```
+
+你需要自己维护CSVFile中的数据行和序列化好的List<AddressBookData>的对应关系
+
+## 保存所有List中的AdressBookData
+
+List的行数和CSVFile中的行数不对应的情况下
+
+```csharp
+
+CSVMapper.ToCSV(new AdressBookDataWriter(),file,list);
+finalCSVText = file.ToCSV();
+
+```
+
+调用CSVFile.ToCSV()就可以得到csv文本

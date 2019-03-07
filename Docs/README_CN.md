@@ -157,3 +157,25 @@ finalCSVText = file.ToCSV();
 ```
 
 调用CSVFile.ToCSV()就可以得到csv文本
+
+# 自动生成功能
+
+如果有上百行的数据的话，新建一个类然后手动添加属性是一个枯燥的工作，可以使用一下方法自动生成一个类文件内容
+
+
+```csharp
+
+CSVCSFileData classFileData = CSVCSFileCreator.CreateDataClassFile("AdBbookData", file.GetHeaderAt(0));
+//这里是类的文件内容，你可以使用File.WriteAllText保存成cs文件
+Debug.Log(classFileData.SourceCode);
+
+```
+
+同样也可以生成一个Parser类
+```csharp
+CSVCSFileData parserClassFileData = CSVCSFileCreator.CreateParserClassFile("AdBbookData", file);
+Debug.Log(parserClassFileData.SourceCode);
+```
+
+你也可以参考源代码实现方式，根据自己的需求编写生成类工具
+

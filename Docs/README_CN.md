@@ -25,11 +25,13 @@ file.Parse(content);
 ```
 
 CSVFile构造函数中接受三个参数：
-dataStartLineNumber：数据从第几行开始，这个案例中数据从第二行开始，所以dataStartLineNumber=1。
 
-lineToken：行分隔符，默认是"\r\n"。
 
-columnToken：列分隔符，默认是","。
+**dataStartLineNumber**：数据从第几行开始，这个案例中数据从第二行开始，所以dataStartLineNumber=1。
+
+**lineToken**：行分隔符，默认是"\r\n"。
+
+**columnToken**：列分隔符，默认是","。
 
 
 因此可以支持解析非csv风格的文件

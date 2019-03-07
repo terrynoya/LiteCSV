@@ -42,7 +42,7 @@ CSVFile constructor need three params
 so it is possible to parse a none csv style data file
 such like line seperator is "\r"，and column seperator is "\t"。
 
-CSVFile whill decode the file data as CSVLine structure，a CSVLine is represent a single line data
+CSVFile will decode the file data as CSVLine structure，a CSVLine is represent a single line data
 
 ## 2.Searialize
 

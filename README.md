@@ -1,3 +1,5 @@
+<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg"></a>
+
 # LiteCSV
 a lightweight csv table parser in C# mainly for unity but also use in .net
 
